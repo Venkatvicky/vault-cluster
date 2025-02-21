@@ -1,13 +1,15 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ .Release.Name }}-test-connection"
+  name: "vault-test-connection"
   annotations:
     "helm.sh/hook": test-success
+  labels:
+    {{- include "vault-cluster.labels" . | nindent 4 }}
 spec:
   containers:
     - name: wget
       image: busybox
-      command: ["wget"]
-      args: ["http://{{ .Release.Name }}:8200"]
+      command: ['wget']
+      args: ['vault:8200']
   restartPolicy: Never

@@ -6,7 +6,7 @@ metadata:
     {{- include "vault.labels" . | nindent 4 }}
 spec:
   selector:
-    app.kubernetes.io/name: "{{ include \"vault.fullname\" . }}"
+    app.kubernetes.io/name: {{ include "vault.fullname" . }}
   ports:
     - protocol: TCP
       port: 8200

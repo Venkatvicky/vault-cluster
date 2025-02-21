@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include \"vault.fullname\" . }}-test-connection"
+  name: "{{ .Release.Name }}-test-connection"
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -9,5 +9,5 @@ spec:
     - name: wget
       image: busybox
       command: ["wget"]
-      args: ["{{ include \"vault.fullname\" . }}:8200"]
+      args: ["http://{{ .Release.Name }}:8200"]
   restartPolicy: Never

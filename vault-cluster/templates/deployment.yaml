@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vault.fullname" . }}
+  labels:
+    app: vault
+spec:
+  replicas: {{ .Values.server.replicas }}
+  selector:
+    matchLabels:
+      app: vault
+  template:
+    metadata:
+      labels:
+        app: vault
+    spec:
+      serviceAccountName: {{ .Values.global.serviceAccount.name }}
+      containers:
+        - name: vault
+          image: "{{ .Values.global.image.repository }}:{{ .Values.global.image.tag }}"
+          ports:
+            - containerPort: 8200

@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "vault.fullname" . }}
+spec:
+  rules:
+    - host: vault.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "vault.fullname" . }}
+                port:
+                  number: 8200

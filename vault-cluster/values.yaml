@@ -1,0 +1,17 @@
+global:
+  image:
+    repository: hashicorp/vault
+    tag: "1.13.3"
+  serviceAccount:
+    create: true
+    name: "vault"
+
+server:
+  replicas: 1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi

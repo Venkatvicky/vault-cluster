@@ -8,6 +8,6 @@ spec:
   containers:
     - name: wget
       image: busybox
-      command: ['wget']
-      args: ['{{ include \"vault.fullname\" . }}:8200']
+      command: ["wget"]
+      args: ["{{ include \"vault.fullname\" . }}:8200"]
   restartPolicy: Never
